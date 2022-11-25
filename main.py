@@ -3,6 +3,23 @@ import os
 from discord.ext import commands
 from dotenv import load_dotenv
 
+class EatWhatView(discord.ui.View):
+    def __init__(self):
+        super().__init__()
+
+        # self.add_item(discord.ui.Button(label="測試按鈕"))
+
+    @discord.ui.button(label="地圖")
+    async def map(self, interation: discord.Interaction, button: discord.ui.Button):
+        embed = discord.Embed(
+            title="地圖",
+            description="以下為此商家的地圖",
+            colour=discord.Colour.green()
+        )
+
+        embed.set_image(url="https://avatars.githubusercontent.com/u/49124428")
+        await interation.response.send_message(embed=embed)
+
 
 def main():
     intents = discord.Intents.default()
@@ -17,7 +34,14 @@ def main():
 
     @bot.command()
     async def eat(ctx: commands.Context):
-        await ctx.send("吃東西!")
+        embed = discord.Embed(
+            title="今天吃什麼",
+            description="吃 **(等待填入)**",
+            colour=discord.Colour.blue()
+        )
+        embed.add_field(name="商家", value="**(預計商家填寫位置)**")
+
+        await ctx.send(embed=embed, view=EatWhatView())
 
     load_dotenv()
     
