@@ -8,6 +8,35 @@ __正在開發中，相關內容會有大幅度變化__
 
 個人想要在隨機功能上增加更多功能，例如可以直接查地圖等。
 
+
+## 安裝與使用
+首先使用 [Git](https://git-scm.com/) 將整個專案 Clone 下來
+```shell
+git clone https://github.com/Nesquate/eating-select-bot
+```
+
+之後使用 [Poetry](https://python-poetry.org/) 將虛擬環境安裝起來
+```shell
+poetry install
+```
+
+安裝好沒問題之後，進入虛擬環境
+
+```shell
+poetry shell
+```
+
+建立 `.env` 檔案，並在檔案內填寫 `BOT_TOKEN` 資訊
+```text
+BOT_TOKEN = ""
+```
+
+一切就緒之後即可執行 Bot
+```shell
+python main.py
+```
+
+
 ## 目標 (v 1.0)
 - [ ] 打指令跳出隨機地點與詳細資訊
 - [ ] 可以用指令搜尋特定餐點的商家
