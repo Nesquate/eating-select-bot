@@ -1,5 +1,7 @@
 import discord
 
+from embeds import mapEmbed, menuEmbed
+
 
 class EatWhatView(discord.ui.View):
     def __init__(self):
@@ -9,11 +11,10 @@ class EatWhatView(discord.ui.View):
 
     @discord.ui.button(label="地圖")
     async def map(self, interation: discord.Interaction, button: discord.ui.Button):
-        embed = discord.Embed(
-            title="地圖",
-            description="以下為此商家的地圖",
-            colour=discord.Colour.green()
-        )
+        embed = mapEmbed()
+        await interation.response.send_message(embed=embed)
 
-        embed.set_image(url="https://avatars.githubusercontent.com/u/49124428")
+    @discord.ui.button(label="菜單")
+    async def menu(self, interation: discord.Interaction, button: discord.ui.Button):
+        embed = menuEmbed()
         await interation.response.send_message(embed=embed)
