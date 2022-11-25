@@ -1,7 +1,7 @@
 import discord
 
 
-def eatEmbed():
+async def eatEmbed() -> discord.Embed:
     embed = discord.Embed(
                 title="今天吃什麼",
                 description="吃 **(等待填入)**",
