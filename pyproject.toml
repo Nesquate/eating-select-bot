@@ -9,6 +9,7 @@ packages = [{include = "eating_select_bot"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 "discord.py" = "^2.1.0"
+python-dotenv = "^0.21.0"
 
 
 [build-system]
