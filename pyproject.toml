@@ -10,6 +10,8 @@ packages = [{include = "eating_select_bot"}]
 python = "^3.11"
 "discord.py" = "^2.1.0"
 python-dotenv = "^0.21.0"
+selenium = "^4.6.1"
+beautifulsoup4 = "^4.11.1"
 
 
 [build-system]

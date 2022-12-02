@@ -1,13 +1,13 @@
 import discord
 
 
-def eatEmbed() -> discord.Embed:
+def eatEmbed(keyword, title) -> discord.Embed:
     embed = discord.Embed(
                 title="今天吃什麼",
-                description="吃 **(等待填入)**",
+                description=f"吃 **{keyword}**",
                 colour=discord.Colour.blue()
             )
-    embed.add_field(name="商家", value="**(預計商家填寫位置)**")
+    embed.add_field(name="商家", value=f"**{title}**")
 
     return embed
 

@@ -4,6 +4,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 from bot import EatWhatBot
 from embeds import eatEmbed
+from providers.googlemap_crawler import GoogleMapCrawler
 
 from views import EatWhatView
 
@@ -21,9 +22,14 @@ def main():
         bot = EatWhatBot(intents=intents)
 
         @bot.command()
-        async def eat(ctx: commands.Context):
-            embed = eatEmbed()
-            await ctx.send(embed=embed, view=EatWhatView())
+        async def eat(ctx: commands.Context, keyword="1"):
+            if(keyword == "1"):
+                await ctx.send("你沒有輸入任何文字!")
+            else:
+                map = GoogleMapCrawler()
+                (title, rate, address) = map.search(keyword)
+                embed = eatEmbed(keyword=keyword, title=title)
+                await ctx.send(embed=embed, view=EatWhatView())
 
         bot.run(token=TOKEN)
     else:
