@@ -25,9 +25,10 @@ class GoogleMapCrawler:
 
         title = selected["aria-label"]
         rate = selected.find("span", class_="ZkP5Je")["aria-label"]
-        address = selected.find("jsl").find_next("jsl").get_text()
+        tag = selected.find("span", {"jstcache":"154"}).get_text()
+        address = selected.find("span", {"jstcache":"154"}).find_next("span", {"jstcache":"154"}).get_text()
 
-        return (title, rate, address)
+        return (title, rate, tag, address)
 
 
     def close(self):

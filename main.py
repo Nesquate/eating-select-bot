@@ -27,7 +27,7 @@ def main():
                 await ctx.send("你沒有輸入任何文字!")
             else:
                 map = GoogleMapCrawler()
-                (title, rate, address) = map.search(keyword)
+                (title, rate, tag, address) = map.search(keyword)
                 embed = eatEmbed(keyword=keyword, title=title)
                 await ctx.send(embed=embed, view=EatWhatView())
 
