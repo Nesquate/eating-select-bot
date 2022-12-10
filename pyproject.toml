@@ -12,6 +12,7 @@ python = "^3.11"
 python-dotenv = "^0.21.0"
 selenium = "^4.6.1"
 beautifulsoup4 = "^4.11.1"
+sqlalchemy = "^1.4.44"
 
 
 [build-system]
