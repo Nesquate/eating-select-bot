@@ -19,10 +19,10 @@ class SearchRecord(Base):
     rate = Column(Float)
     date = Column(String)
 
-    def __init__(self, discord_id:str, keyword:str, rate: float):
+    def __init__(self, discord_id:str, keyword:str):
         self.discord_id = discord_id
         self.keyword = keyword
-        self.rate = rate
+        self.rate = 0.5
         self.date = str(datetime.datetime.now().timestamp())
 
 class Keywords(Base):
