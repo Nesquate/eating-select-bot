@@ -46,7 +46,7 @@ def main():
             embed = eatEmbed(keyword=keyword, title=title)
             if len(db.checkKeyword(keyword=tag)) == 0:
                 db.storeKeyword(tag)
-            db.storeSearchRecord(str(ctx.author.id), keyword=keyword)
+            db.storeSearchRecord(str(ctx.author.id), title=title, keyword=keyword, map_rate=rate, tag=tag, map_address=address)
 
             # TODO: Store user id & keyword to model for training
 

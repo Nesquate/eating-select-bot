@@ -43,8 +43,8 @@ class DB:
     def getModelFromUser():
         pass
 
-    def storeSearchRecord(self, discord_id:str, keyword:str) -> None:
-        searchRecord = SearchRecord(discord_id=discord_id, keyword=keyword)
+    def storeSearchRecord(self, discord_id:str, title:str, keyword:str, map_rate:str, tag:str, map_address:str) -> None:
+        searchRecord = SearchRecord(discord_id=discord_id, title=title, keyword=keyword, map_rate=map_rate, tag=tag, address=map_address, self_rate=0.5)
 
         with Session(self.engine) as session:
             session.add(searchRecord)

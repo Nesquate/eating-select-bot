@@ -14,15 +14,23 @@ class UserPref(Base):
 class SearchRecord(Base):
     __tablename__ = "search_record"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    discord_id = Column(String)
-    keyword = Column(String)
-    rate = Column(Float)
     date = Column(String)
+    discord_id = Column(String)
+    title = Column(String)
+    tag = Column(String)
+    address = Column(String)
+    keyword = Column(String)
+    map_rate = Column(String)
+    self_rate = Column(Float)
 
-    def __init__(self, discord_id:str, keyword:str):
+    def __init__(self, discord_id:str, title:str, keyword:str, tag:str, address:str, map_rate:str, self_rate:float):
         self.discord_id = discord_id
         self.keyword = keyword
-        self.rate = 0.5
+        self.title = title
+        self.tag = tag
+        self.address = address
+        self.map_rate = map_rate
+        self.self_rate = self_rate
         self.date = str(datetime.datetime.now().timestamp())
 
 class Keywords(Base):
