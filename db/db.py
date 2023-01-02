@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine, select
+from sqlalchemy.engine import Row
 from sqlalchemy.orm import Session
 from db.tables import *
 
@@ -10,12 +11,24 @@ class DB:
         Base.metadata.create_all(self.engine)
 
     def getKeywords(self) -> list():
-        getCommand = select(Keywords.c.keywords)
+        getCommand = select(Keywords.keyword)
+        print(getCommand)
 
         with Session(self.engine) as session:
-            keywords_list = session.execute(getCommand)
-
+            result = session.execute(getCommand)
+            keywords_list = result.all()
+            
         return keywords_list
+
+    def checkKeyword(self, keyword:String):
+        getCommand = select(Keywords).where(Keywords.keyword == keyword)
+
+        with Session(self.engine) as session:
+            result = session.execute(getCommand)
+            result_list = result.all()
+        
+        return result_list
+
     
     def storeKeyword(self, keyword: str) -> None:
         keyword_data = Keywords(keyword=keyword)

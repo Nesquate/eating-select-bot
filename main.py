@@ -1,3 +1,4 @@
+import random
 import discord
 import os
 from discord.ext import commands
@@ -26,18 +27,30 @@ def main():
 
         @bot.command()
         async def eat(ctx: commands.Context, keyword="_"):
+            
             if(keyword == "_"):
-                await ctx.send("你沒有輸入任何文字!")
+                keywords_list = db.getKeywords() 
+                if len(keywords_list) == 0:
+                    await ctx.send("你沒有輸入任何文字!")
+                    return
+                else:
+                    # Row list 經觀察可以把他當 tuple 來看，所以要解包兩次 (一次 list 一次 tuple)
+                    keyword = keywords_list[round(random.randint(0, len(keywords_list)-1))][0]
+
             else:
-                map = GoogleMapCrawler()
-                (title, rate, tag, address) = map.search(keyword)
-                embed = eatEmbed(keyword=keyword, title=title)
-                db.storeKeyword(keyword)
-                db.storeSearchRecord(str(ctx.author.id), keyword=keyword)
+                if len(db.checkKeyword(keyword=keyword)) == 0:
+                    db.storeKeyword(keyword)
 
-                # TODO: Store user id & keyword to model for training
+            map = GoogleMapCrawler()
+            (title, rate, tag, address) = map.search(keyword)
+            embed = eatEmbed(keyword=keyword, title=title)
+            if len(db.checkKeyword(keyword=tag)) == 0:
+                db.storeKeyword(tag)
+            db.storeSearchRecord(str(ctx.author.id), keyword=keyword)
 
-                await ctx.send(embed=embed, view=EatWhatView())
+            # TODO: Store user id & keyword to model for training
+
+            await ctx.send(embed=embed, view=EatWhatView())
 
         bot.run(token=TOKEN)
     else:
