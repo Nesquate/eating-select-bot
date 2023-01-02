@@ -37,6 +37,8 @@ def main():
                     # Row list 經觀察可以把他當 tuple 來看，所以要解包兩次 (一次 list 一次 tuple)
                     keyword = keywords_list[round(random.randint(0, len(keywords_list)-1))][0]
 
+                    # TODO: 使用使用者喜好模型預測使用者喜好的關鍵字或店家
+
             else:
                 if len(db.checkKeyword(keyword=keyword)) == 0:
                     db.storeKeyword(keyword)
@@ -46,11 +48,13 @@ def main():
             embed = eatEmbed(keyword=keyword, title=title)
             if len(db.checkKeyword(keyword=tag)) == 0:
                 db.storeKeyword(tag)
-            db.storeSearchRecord(str(ctx.author.id), title=title, keyword=keyword, map_rate=rate, tag=tag, map_address=address)
+            id = db.storeSearchRecord(str(ctx.author.id), title=title, keyword=keyword, map_rate=rate, tag=tag, map_address=address)
+
+            print(f"Debug: Search record id: {id}")
 
             # TODO: Store user id & keyword to model for training
 
-            await ctx.send(embed=embed, view=EatWhatView())
+            await ctx.send(embed=embed, view=EatWhatView(db=db, record_id=id))
 
         bot.run(token=TOKEN)
     else:
