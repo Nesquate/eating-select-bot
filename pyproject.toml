@@ -7,12 +7,15 @@ readme = "README.md"
 packages = [{include = "eating_select_bot"}]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10.9"
 "discord.py" = "^2.1.0"
 python-dotenv = "^0.21.0"
 selenium = "^4.6.1"
 beautifulsoup4 = "^4.11.1"
 sqlalchemy = "^1.4.44"
+torchvision = "^0.14.1"
+torch = "^1.13.1"
+numpy = "^1.24.1"
 
 
 [build-system]
