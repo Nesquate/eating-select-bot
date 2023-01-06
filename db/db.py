@@ -56,8 +56,9 @@ class DB:
 
         with Session(self.engine) as session:
             searchRecords = session.execute(getCommand)
+            searchRecords_all = searchRecords.all()
 
-        return searchRecords
+        return searchRecords_all
 
     def updateRecordRate(self, id:int, new_rate: float) -> bool:
         with Session(self.engine) as session:
