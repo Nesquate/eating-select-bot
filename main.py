@@ -68,7 +68,7 @@ def main():
 
                 # TODO: Store user id & keyword to model for training
 
-                await ctx.send(embed=embed, view=EatWhatView(db=db, record_id=id))
+                await ctx.send(embed=embed, view=EatWhatView(db=db, record_id=id, discord_id=str(ctx.author.id)))
 
                 train.genModel(str(ctx.author.id))
             except Exception as e:
