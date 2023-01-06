@@ -42,4 +42,7 @@ python main.py
 - [ ] 可以用指令搜尋特定餐點的商家
 - [ ] 地點詳細資訊有相關按鈕 (可以叫出菜單、小地圖、使用者評價)
 - [x] 地點詳細資訊有喜好選擇 (喜歡/不喜歡)
-- [ ] 運用機器學習計算使用者的餐點喜好
+- [x] 運用機器學習計算使用者的餐點喜好
+
+## 特別感謝：
+@pyliaorachel 的 https://github.com/pyliaorachel/resurrecting-the-dead-chinese 提供 LSTM 搭建參考
